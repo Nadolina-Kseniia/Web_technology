@@ -45,10 +45,15 @@ namespace CarDealershipApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Dealer>> PostDealer(Dealer dealer)
         {
+            // 1. Добавляем объект в контекст
             _context.Dealers.Add(dealer);
+
+            // 2. Сохраняем изменения в базе данных. 
+            //    EF Core автоматически обновляет объект 'dealer' с присвоенным ID.
             await _context.SaveChangesAsync();
 
-            // Возвращает HTTP 201 Created и ссылку на новый ресурс
+            // 3. Возвращаем ответ 201 Created. 
+            //    Используем 'dealer.ID' (который теперь содержит новый ID) для ссылки на новый ресурс.
             return CreatedAtAction(nameof(GetDealer), new { id = dealer.ID }, dealer);
         }
 

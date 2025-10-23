@@ -12,6 +12,6 @@ namespace CarDealershipApi.Models
         public decimal Rating { get; set; } // DECIMAL(10, 2) в БД [cite: 199]
 
         // Навигационное свойство для связи (Один дилер -> Много автомобилей)
-        public ICollection<Car> Cars { get; set; }
+        public ICollection<Car>? Cars { get; set; }
     }
 }
