@@ -5,7 +5,12 @@ using CarDealershipApi.Data; // указывает на папку Data с контекстом
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Добавление сервисов контроллеров
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 // 2. Добавление поддержки Swagger/OpenAPI (для тестирования API)
 builder.Services.AddEndpointsApiExplorer();
