@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 namespace CarDealershipApi.Models
 {
     public class Dealer
@@ -11,7 +14,9 @@ namespace CarDealershipApi.Models
         public string Area { get; set; }
         public decimal Rating { get; set; } // DECIMAL(10, 2) в БД [cite: 199]
 
+        [ValidateNever] // <-- ЭТО ГОВОРИТ ASP.NET CORE НЕ ПРОВЕРЯТЬ ЭТО ПОЛЕ ПРИ POST/PUT
         // Навигационное свойство для связи (Один дилер -> Много автомобилей)
-        public ICollection<Car>? Cars { get; set; }
+        // ВАРИАНТ 2 (Инициализация пустой коллекцией):
+        public ICollection<Car> Cars { get; set; } = new List<Car>();
     }
 }
