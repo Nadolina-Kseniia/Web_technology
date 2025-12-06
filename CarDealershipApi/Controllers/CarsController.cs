@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CarDealershipApi.Data; // Используем контекст
+using CarDealershipApi.Repositories;
 using CarDealershipApi.Models; // Используем модель Car
 
 namespace CarDealershipApi.Controllers
@@ -9,11 +9,11 @@ namespace CarDealershipApi.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        private readonly CarDealershipContext _context;
+        private readonly ICarRepository _repository;
 
-        public CarsController(CarDealershipContext context)
+        public CarsController(ICarRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // ЛР 3, Метод 1: Получение всех автомобилей

@@ -1,5 +1,5 @@
 public class CarEvent
 {
-    public string EventType { get; set; } // CREATE, UPDATE, DELETE [cite: 283]
+    public string EventType { get; set; } // CREATE, UPDATE, DELETE
     public Car Car { get; set; }
 }

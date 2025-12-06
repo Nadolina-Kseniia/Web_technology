@@ -1,8 +1,3 @@
-public interface IEventPublisher
-{
-    void Publish(string message);
-}
-
 public class RabbitMqPublisher : IEventPublisher, IDisposable
 {
     private const string ExchangeName = "cars_events_exchange";
@@ -16,7 +11,7 @@ public class RabbitMqPublisher : IEventPublisher, IDisposable
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
 
-        [cite_start]// ќбъ€вл€ем Exchange и очередь, а также создаем прив€зку (Binding) [cite: 296]
+        [cite_start]// ќбъ€вл€ем Exchange и очередь, а также создаем прив€зку (Binding)
         _channel.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Direct);
         _channel.QueueDeclare(queue: "cars_events_queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
         _channel.QueueBind(queue: "cars_events_queue", exchange: ExchangeName, routingKey: "car.event");
